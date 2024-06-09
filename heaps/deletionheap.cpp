@@ -32,8 +32,37 @@ class heap{
             }
         }
     }
+    int deletion(){
+        int answer = arr[1];
+        //replacement
+        arr[1] = arr[size];
+        //last element ko delete kro uski original position se
+        size--;
+        int index = 1;
+        while(index<size){
+            int leftIndex = 2 * index;
+            int rightIndex = 2 * index + 1;
+            //find out krna hai , sbse bda kon
+            int largestkaindex = index;
+            //check left child
+            if(leftIndex<=size && arr[largestkaindex]<arr[leftIndex]){
+                largestkaindex = leftIndex;
+            }
+            if(rightIndex<=size && arr[largestkaindex]<arr[rightIndex]){
+                largestkaindex = rightIndex;
+            }
+            if(index == largestkaindex){
+                break;
+            }
+            else{
+                swap(arr[index],arr[largestkaindex]);
+                index = largestkaindex;
+            }
+        }
+        return answer;
+    }
     void printheap(){
-         for(int i = 0; i <= size;i++){
+         for(int i = 1; i <= size;i++){
         cout<<arr[i]<<" ";
     }
     }
@@ -49,6 +78,9 @@ int main(){
 
     cout<<"Printing the content of heap : "<<endl;
     h.printheap();
-
+    int ans = h.deletion();
+    cout<<"Answer is : "<<ans<<endl;
+    cout<<endl;
+    h.printheap();
     return 0;
 }

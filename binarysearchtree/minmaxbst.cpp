@@ -100,6 +100,31 @@ void preorderTraversal(Node* root){
         //N
         cout<<root->data<<" ";
     }
+    Node* minValue(Node* root){
+        if(root==NULL){
+            return NULL;
+        }
+        else{
+            Node* temp = root;
+            while(temp->left != NULL){
+                temp = temp->left;
+            }
+            return temp;
+        }
+    }
+    Node* maxValue(Node* root){
+        if(root==NULL){
+            return NULL;
+        }
+        else{
+            Node* temp = root;
+            while(temp->right != NULL){
+                temp = temp->right;
+            }
+            return temp;
+        }
+    }
+
 int main(){
     Node* root = NULL;
     createBST(root);
@@ -113,7 +138,22 @@ int main(){
     cout<<"Postorder Traversal : "<<endl;
     postorderTraversal(root);
     cout<<endl;
-    
+    Node* minNode = minValue(root);
+    if(minNode == NULL){
+        cout<<"There is no need in a tree, so no min value"<<endl;
+    }
+    else{
+        cout<<"MinValue : "<<minNode->data<<endl;
+    }
+    cout<<endl;
+   Node* maxNode = maxValue(root);
+    if(maxNode == NULL){
+        cout<<"There is no need in a tree, so no min value"<<endl;
+    }
+    else{
+        cout<<"MinValue : "<<maxNode->data<<endl;
+    }
+    cout<<endl;
     return 0;
 }
 //50 30 40 20 60 55 70 80 25 -1

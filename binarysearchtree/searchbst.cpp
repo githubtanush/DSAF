@@ -100,6 +100,27 @@ void preorderTraversal(Node* root){
         //N
         cout<<root->data<<" ";
     }
+    bool searchinbst(Node* root,int target){
+        //base case
+        if(root==NULL)
+        return false;
+
+        //1 case mujhe solve krna hai 
+        if(root->data==target){
+            return true;
+        }
+        //baaki recursion sambhal lega
+        //left ya right
+        bool leftAns = false;
+        bool rightAns = false;
+        if(target>root->data){
+            rightAns = searchinbst(root->right,target);
+        }
+        else{
+            leftAns = searchinbst(root->left,target);
+        }
+        return leftAns||rightAns;
+    }
 int main(){
     Node* root = NULL;
     createBST(root);
@@ -113,6 +134,19 @@ int main(){
     cout<<"Postorder Traversal : "<<endl;
     postorderTraversal(root);
     cout<<endl;
+    int t;
+    cout<<"Enter target : "<<endl;
+    cin>>t;
+    while(t!=-1){
+        bool ans = searchinbst(root,t);
+        if(ans==true){
+            cout<<"Found"<<endl;
+        }
+        else{
+            cout<<"Not found"<<endl;
+        }
+        cin>>t;
+    }
     
     return 0;
 }
